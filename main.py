@@ -1,4 +1,5 @@
 from stats import word_count, char_count, sort_chars
+import sys
 
 def get_book_text(file):
     with open(file) as f:
@@ -8,8 +9,14 @@ def get_book_text(file):
 def get_unique_chars(book_text):
     return set(book_text.lower())
 
+def check_program_args():
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
 def main():
-    file = "books/frankenstein.txt"
+    check_program_args()
+    file = sys.argv[1]
     book = get_book_text(file)
     num_words = word_count(book)
     char_set = get_unique_chars(book)
